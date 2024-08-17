@@ -1,6 +1,6 @@
 <template>
-    <div class="text-center">
-        <h1>404</h1>
+    <div class="main-content">
+        employees
     </div>
 </template>
 

@@ -2,6 +2,8 @@ import { createRouter, createWebHistory } from "vue-router";
 
 import login from "../pages/authentication/login.vue"
 import dashboard from "../pages/dashboard.vue"
+import companies from "../pages/companies.vue"
+import employees from "../pages/employees.vue"
 
 
 import store from '../store'
@@ -16,6 +18,16 @@ const routes = [
         path: '/login',
         name: 'login',
         component: login,
+    },
+    {
+        path: '/companies',
+        name: 'companies',
+        component: companies,
+    },
+    {
+        path: '/employees',
+        name: 'employees',
+        component: employees,
     }
 ]
 
@@ -25,7 +37,7 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-    const authRequiredRoutes = ["dashboard"];
+    const authRequiredRoutes = ["dashboard", "companies", "employees"];
     const authNotRequiredRoutes = ["login",];
     const _isAuthenticated = store.getters._isAuthenticated;
 

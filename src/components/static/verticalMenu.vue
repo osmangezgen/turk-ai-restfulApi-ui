@@ -22,6 +22,34 @@
                 </div>
               </li>
             </router-link>
+
+            <li class="menu-title" key="t-menu">Uygulama</li>
+
+            <router-link :to="{ name: 'companies' }">
+              <li>
+                <div class="menu-content">
+                  <div class="menu-content-inside d-flex align-items-center">
+                    <span class="me-4 menu-icon"
+                      ><i class="fa-solid fa-building"></i
+                    ></span>
+                    <span>Companies</span>
+                  </div>
+                </div>
+              </li>
+            </router-link>
+
+            <router-link :to="{ name: 'employees' }">
+              <li>
+                <div class="menu-content">
+                  <div class="menu-content-inside d-flex align-items-center">
+                    <span class="me-3 menu-icon"
+                      ><i class="fa-solid fa-users"></i
+                    ></span>
+                    <span>Employees</span>
+                  </div>
+                </div>
+              </li>
+            </router-link>
           </ul>
         </div>
       </div>

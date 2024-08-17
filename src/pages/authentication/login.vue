@@ -15,6 +15,7 @@
               aria-describedby="emailHelp"
               placeholder="enter your email"
               v-model="form.email"
+              required
             />
             <span class="login-input-icon"><i class="fa-solid fa-user"></i></span>
           </div>
@@ -27,6 +28,7 @@
               aria-describedby="passwordHelp"
               placeholder="enter your password"
               v-model="form.password"
+              required
             />
             <span class="login-input-icon"><i class="fa-solid fa-lock"></i></span>
           </div>
@@ -79,7 +81,6 @@ const login = () => {
           error.value = err.response?.data?.messages || ['Beklenmedik bir hata oluştu.'];
           spin.value = false;
         });
-        console.log(error);
 }
 
 </script>

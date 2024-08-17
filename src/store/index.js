@@ -22,11 +22,6 @@ export default createStore({
         verticalMenuToggle(state){
             state.settings.verticalMenu = !state.settings.verticalMenu;
         },
-        updateUser(state, item){
-            state.user.phone = item.phone;
-            state.user.adress = item.adress;
-            state.user.img_url = item.img_url;
-        },
     },
     getters: {
         _isAuthenticated: state => state.user !== null,

@@ -65,7 +65,7 @@
                     alt=""
                     v-if="_getCurrentUser?.img_url == null"
                   />
-                  <img :src="'images/users/' + _getCurrentUser?.img_url" alt="" v-else />
+                  <img :src="_getCurrentUser?.img_url" alt="" v-else />
                   <span>{{ _getCurrentUser?.name }}</span>
                   <span><i class="fa-solid fa-chevron-down"></i></span>
                 </button>
