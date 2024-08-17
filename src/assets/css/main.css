@@ -57,6 +57,7 @@ html, body {
 
 
 
+
 /* authentication */
 .authentication{
     width: 100%;
@@ -295,6 +296,10 @@ html, body {
     color: var(--colorDark);
     cursor: pointer;
     opacity: 0.9;
+    transition: transform .4s cubic-bezier(.08,1.09,.32,1.275), -webkit-transform .4s cubic-bezier(.08,1.09,.32,1.275);
+}
+.vertical-menu-toggle-close{
+    transform: rotate(180deg);
 }
 .navbar-settings{
     font-size: 18px;

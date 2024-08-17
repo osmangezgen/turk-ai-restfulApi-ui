@@ -1,17 +1,12 @@
 import { createRouter, createWebHistory } from "vue-router";
 
-import dashboard from "../pages/dashboard.vue"
 import login from "../pages/authentication/login.vue"
+import dashboard from "../pages/dashboard.vue"
 
 
 import store from '../store'
 
 const routes = [
-    // {
-    //     path: '/:pathMatch(.*)*',
-    //     name: 'notFound',
-    //     component: notFound
-    // },
     {
         path: '/',
         name: 'dashboard',
@@ -40,7 +35,12 @@ router.beforeEach((to, from, next) => {
         if (_isAuthenticated) next();
         else next({ name: "login" });
     } else {
-        next();
+        // not found
+        if (to.matched.length === 0) {
+            next({ name: "login" });
+        } else {
+            next();
+        }
     }
 });
 
