@@ -86,7 +86,6 @@ import Swal from 'sweetalert2';
 
 const { proxy } = getCurrentInstance();
 const companiesData = ref(null);
-const companiesDataProps = ref(null);
 const paginateData = ref(null);
 
 

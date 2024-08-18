@@ -128,6 +128,7 @@
 <script setup>
 import { ref, getCurrentInstance } from 'vue';
 import Swal from 'sweetalert2';
+
 const { proxy } = getCurrentInstance();
 const emit = defineEmits(['onCompanySaved']);
 
