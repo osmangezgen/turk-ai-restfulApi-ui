@@ -32,7 +32,7 @@
                     <span class="me-4 menu-icon"
                       ><i class="fa-solid fa-building"></i
                     ></span>
-                    <span>Companies</span>
+                    <span>Şirketler</span>
                   </div>
                 </div>
               </li>
@@ -45,7 +45,7 @@
                     <span class="me-3 menu-icon"
                       ><i class="fa-solid fa-users"></i
                     ></span>
-                    <span>Employees</span>
+                    <span>Çalışanlar</span>
                   </div>
                 </div>
               </li>

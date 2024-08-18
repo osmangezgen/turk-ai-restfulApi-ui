@@ -63,9 +63,7 @@
                   <img
                     src="http://127.0.0.1:8000/storage/default.png"
                     alt=""
-                    v-if="_getCurrentUser?.img_url == null"
                   />
-                  <img :src="_getCurrentUser?.img_url" alt="" v-else />
                   <span>{{ _getCurrentUser?.name }}</span>
                   <span><i class="fa-solid fa-chevron-down"></i></span>
                 </button>
@@ -102,7 +100,7 @@ const { proxy } = getCurrentInstance();
 
 const store = useStore();
 const router = useRouter();
-const emit = defineEmits(['verticalMenu']);
+const emit = defineEmits(['verticalMenuFunc']);
 
 const _getCurrentUser = computed(() => store.getters._getCurrentUser);
 const _getSettings = computed(() => store.getters._getSettings);

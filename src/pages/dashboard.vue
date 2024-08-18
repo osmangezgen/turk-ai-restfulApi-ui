@@ -12,17 +12,8 @@
               <img
                 src="http://127.0.0.1:8000/storage/default.png"
                 alt=""
-                v-if="_getCurrentUser?.img_url == null"
               />
-              <img :src="_getCurrentUser?.img_url" alt="" v-else />
               <div>{{ _getCurrentUser?.name }}</div>
-              <button
-                type="button"
-                class="btn btn-primary btn-sm d-flex align-items-center"
-              >
-                <span>Profili Görüntüle</span>
-                <span><i class="fa-solid fa-arrow-right ms-2"></i></span>
-              </button>
             </div>
           </div>
         </div>
@@ -78,9 +69,6 @@
                 <div class="report-info-icon"><i class="fa-solid fa-clock"></i></div>
               </div>
             </div>
-          </div>
-          <div class="report-card shadow-sm p-2 bg-white">
-            <div id="chart"></div>
           </div>
         </div>
       </div>

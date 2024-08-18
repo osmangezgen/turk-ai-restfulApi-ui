@@ -28,10 +28,10 @@ const _getSettings = computed(() => store.getters._getSettings);
 
 onBeforeMount(() => {
   vericalMenuChanced.value = _getSettings.value.verticalMenu;
-
-  // csrf-cookie
-  proxy.$appAxios.get('/sanctum/csrf-cookie').then(response => {});
 });
+
+// csrf-cookie
+proxy.$appAxios.get('/sanctum/csrf-cookie').then(response => {});
 
 const verticalMenuFunc = (item) => {
   vericalMenuChanced.value = item;
