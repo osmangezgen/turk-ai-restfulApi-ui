@@ -32,13 +32,12 @@
             />
             <span class="login-input-icon"><i class="fa-solid fa-lock"></i></span>
           </div>
-          <div class="text-danger ms-1" style="font-size: 15px;" v-if="error.length > 0">
-            {{ error[0] }}
+          <div class="text-danger ms-1" style="font-size: 15px; height: 15px">
+            <div v-if="error.length > 0">
+              {{ error[0] }}
+            </div>
           </div>
-          <div class="forgot-password mb-4 text-end">
-            <a href=""><span>Forgot password ?</span></a>
-          </div>
-          <div class="login-submit text-center">
+          <div class="login-submit text-center mt-3">
             <button type="submit" class="btn btn-primary">
               <div v-if="!spin">Submit</div>
               <div class="spinner-border" role="status" v-else>

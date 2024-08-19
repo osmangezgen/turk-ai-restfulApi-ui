@@ -7,7 +7,7 @@
         <h1>Çalışanlar</h1>
         <div class="navbar-search border">
           <span><i class="fa-solid fa-magnifying-glass"></i></span>
-          <input type="text" placeholder="Ara..." />
+          <input type="text" placeholder="Çalışan adına göre ara..." v-model="searchData"/>
         </div>
         <div class="add-user d-flex">
           <button
@@ -38,7 +38,7 @@
                   </thead>
                   <tbody>
                     <tr v-for="(item, index) in employeesData" :key="item">
-                      <td class="text-primary">#{{ paginateData.total - ((paginateData.current_page - 1) * paginateData.per_page) - index  }}</td> 
+                      <td class="text-primary">#{{ searchDataStatus == false ? paginateData.total - ((paginateData.current_page - 1) * paginateData.per_page) - index : "" }}</td> 
                       <td>{{ item.first_name }}</td>
                       <td>{{ item.last_name }}</td>
                       <td>{{ item.email }}</td>
@@ -69,7 +69,7 @@
 import addEmployeesModal from "../components/modals/employees/addEmployees.vue";
 import paginate from "../components/paginate/paginate.vue";
 
-import { ref, onMounted, watch, getCurrentInstance } from 'vue';
+import { ref, onMounted, watch, getCurrentInstance, watchEffect } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Swal from 'sweetalert2';
 
@@ -77,7 +77,8 @@ import Swal from 'sweetalert2';
 const { proxy } = getCurrentInstance();
 const employeesData = ref(null);
 const paginateData = ref(null);
-
+const searchData = ref("");
+const searchDataStatus = ref(false);
 
 const route = useRoute();
 const router = useRouter();
@@ -119,6 +120,26 @@ const deleteCompany = (item) => {
 // Watchers
 watch(route, (newRoute) => {
   if (route.name === 'employees') {
+    getEmployees();
+  }
+});
+
+watchEffect((onValidate) => {
+  if (searchData.value.length > 2) { 
+      const response = setTimeout(() => {
+         proxy.$appAxios.get('/api/employees-search', {
+            params: { query: searchData.value }
+          }).then((response) => {
+            searchDataStatus.value = true;
+            employeesData.value = response?.data?.data;
+          });
+      }, 500);
+
+      onValidate(() => {
+        clearTimeout(response)
+      })
+  }else if(searchData.value.length == 0 && searchDataStatus.value == true) {
+    searchDataStatus.value = false;
     getEmployees();
   }
 });

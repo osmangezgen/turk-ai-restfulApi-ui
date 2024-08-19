@@ -18,9 +18,9 @@
               <div class="vertical-menu-toggle" :class="{ 'vertical-menu-toggle-close': !verticalMenuStatus }" @click="verticalMenuToggle">
                 <i class="fa-solid fa-angles-left"></i>
               </div>
-              <div class="navbar-search">
+              <div class="navbar-search d-none">
                 <span><i class="fa-solid fa-magnifying-glass"></i></span>
-                <input type="text" placeholder="Ara..." />
+                <input type="text" placeholder="Ara..."/>
               </div>
             </div>
             <div class="navbar-right-side">

@@ -4,9 +4,6 @@
       <div data-simplebar class="h-100">
         <!--- Sidemenu -->
         <div id="sidebar-menu">
-          <!-- <div class="sidebar-logo">
-            <img src="images/noisoft-logo.png" alt="" height="40" />
-          </div> -->
           <!-- Left Menu Start -->
           <ul class="list-unstyled" id="side-menu">
             <li class="menu-title" key="t-menu">Menu</li>

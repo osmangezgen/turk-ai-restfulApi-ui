@@ -7,7 +7,7 @@
         <h1>Şirketler</h1>
         <div class="navbar-search border">
           <span><i class="fa-solid fa-magnifying-glass"></i></span>
-          <input type="text" placeholder="Ara..." />
+          <input type="text" placeholder="Şirket adına göre ara..." v-model="searchData"/>
         </div>
         <div class="add-user d-flex">
           <button
@@ -38,7 +38,7 @@
                   </thead>
                   <tbody>
                     <tr v-for="(item, index) in companiesData" :key="item">
-                      <td class="text-primary">#{{ paginateData.total - ((paginateData.current_page - 1) * paginateData.per_page) - index  }}</td> 
+                      <td class="text-primary">#{{ searchDataStatus == false ? paginateData.total - ((paginateData.current_page - 1) * paginateData.per_page) - index : "" }}</td> 
                       <td>{{ item.name }}</td>
                       <td>{{ item.email }}</td>
                       <td>
@@ -79,7 +79,7 @@
 import addCompaniesModal from "../components/modals/companies/addCompanies.vue";
 import paginate from "../components/paginate/paginate.vue";
 
-import { ref, onMounted, watch, getCurrentInstance } from 'vue';
+import { ref, onMounted, watch, getCurrentInstance, watchEffect } from 'vue';
 import { useRoute, useRouter } from 'vue-router';
 import Swal from 'sweetalert2';
 
@@ -87,6 +87,8 @@ import Swal from 'sweetalert2';
 const { proxy } = getCurrentInstance();
 const companiesData = ref(null);
 const paginateData = ref(null);
+const searchData = ref("");
+const searchDataStatus = ref(false);
 
 
 const route = useRoute();
@@ -119,9 +121,9 @@ const deleteCompany = (item) => {
   }).then((result) => {
     if (result.isConfirmed) {
         proxy.$appAxios.delete('/api/companies/'+ item.id).then(() => {
-        Swal.fire('Silindi!', 'Şirket başarı ile silindi.', 'success');
-        getCompanies();
-      });
+          Swal.fire('Silindi!', 'Şirket başarı ile silindi.', 'success');
+          getCompanies();
+        });
     }
   });
 };
@@ -129,6 +131,26 @@ const deleteCompany = (item) => {
 // Watchers
 watch(route, (newRoute) => {
   if (route.name === 'companies') {
+    getCompanies();
+  }
+});
+
+watchEffect((onValidate) => {
+  if (searchData.value.length > 2) { 
+      const response = setTimeout(() => {
+         proxy.$appAxios.get('/api/companies-search', {
+            params: { query: searchData.value }
+          }).then((response) => {
+            searchDataStatus.value = true;
+            companiesData.value = response?.data?.data;
+          });
+      }, 500);
+
+      onValidate(() => {
+        clearTimeout(response)
+      })
+  }else if(searchData.value.length == 0 && searchDataStatus.value == true) {
+    searchDataStatus.value = false;
     getCompanies();
   }
 });
